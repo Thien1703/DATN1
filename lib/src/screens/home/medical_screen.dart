@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:health_care/src/widget/custom_profile.dart';
 import 'package:health_care/src/widget/feature_card.dart';
+import 'package:health_care/src/screens/booking/examination.dart';
 
 class MedicalScreen extends StatelessWidget {
   MedicalScreen({super.key});
 
   final List<Map<String, dynamic>> features = [
     {'icon': Icons.schedule, 'title': 'Lịch khám', 'onTap': 'Lịch khám'},
-    {'icon': Icons.medical_services, 'title': 'Thăm khám', 'onTap': 'Thăm khám'},
-    {'icon': Icons.local_hospital, 'title': 'Cơ sở khám', 'onTap': 'Cơ sở khám'},
+    {
+      'icon': Icons.medical_services,
+      'title': 'Thăm khám',
+      'onTap': 'Thăm khám'
+    },
+    {
+      'icon': Icons.local_hospital,
+      'title': 'Cơ sở khám',
+      'onTap': 'Cơ sở khám'
+    },
     {'icon': Icons.attach_money, 'title': 'Doanh thu', 'onTap': 'Doanh thu'},
     {'icon': Icons.settings, 'title': 'Cấu hình', 'onTap': 'Cấu hình'},
     {'icon': Icons.person, 'title': 'Tài khoản', 'onTap': 'Tài khoản'},
@@ -34,7 +43,14 @@ class MedicalScreen extends StatelessWidget {
               icon: feature['icon'],
               title: feature['title'],
               onTap: () {
-                print(feature['onTap']); // Tạo sự kiện khi nhấn vào từng item
+                if (feature['onTap'] == 'Thăm khám') {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Examination(),
+                    ),
+                  );
+                }
               },
             );
           },
@@ -43,4 +59,3 @@ class MedicalScreen extends StatelessWidget {
     );
   }
 }
-

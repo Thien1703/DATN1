@@ -1,14 +1,12 @@
 name: health_care
 description: "A new Flutter project."
 
-publish_to: 'none'
-
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
-
+  sdk: ">=3.4.3 <4.0.0"
 
 dependencies:
   flutter:
@@ -29,6 +27,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
-
-
+    - assets/images/ic_Back.png
+    - assets/images/ic_doctor.png
+    - assets/images/ic_calendar.png
+    - assets/images/ic_examination.png
+    - assets/images/ic_medicine.png
+    - assets/images/ic_schedule.png
