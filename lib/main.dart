@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_care/src/screens/Books/visit_info_screen.dart';
 import 'package:health_care/src/screens/welcome_screens.dart';
 
 void main() {
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
+      // home: VisitInfoScreen(),
     );
   }
 }
