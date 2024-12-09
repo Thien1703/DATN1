@@ -13,15 +13,13 @@ class Examination extends StatefulWidget {
 class _Examination extends State<StatefulWidget> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: Column(
-            children: [
-              CustomHeader('THÔNG TIN THĂM KHÁM'),
-              Screen(),
-            ],
-          ),
-        ));
+    return Scaffold(
+      body: Column(
+        children: [
+          CustomHeader('THÔNG TIN THĂM KHÁM'),
+          Screen(),
+        ],  
+      ),
+    );
   }
 }
