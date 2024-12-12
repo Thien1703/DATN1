@@ -18,7 +18,8 @@ class MedicalAppointmentScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Image.asset('assets/icons/back.png', height: 24, width: 24), // Thay icon bằng ảnh
+          icon: Image.asset('assets/icons/back.png',
+              height: 24, width: 24), // Thay icon bằng ảnh
           onPressed: () {},
         ),
         title: Text(

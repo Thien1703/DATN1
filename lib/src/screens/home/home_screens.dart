@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_care/src/screens/home/medical_screen.dart';
+import 'package:health_care/src/screens/home/account_screen.dart';
+import 'package:health_care/src/screens/home/search_screen.dart';
 
 class HomeScreens extends StatefulWidget {
   @override
@@ -33,7 +35,7 @@ class _HomeScreensState extends State<HomeScreens> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: _getBody(),  // Chuyển đổi thân màn hình
+      body: _getBody(), // Chuyển đổi thân màn hình
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(40.0),
@@ -69,32 +71,3 @@ class _HomeScreensState extends State<HomeScreens> {
     );
   }
 }
-
-// Màn hình Tài khoản
-class AccountScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Tài khoản',
-        style: TextStyle(fontSize: 24),
-      ),
-    );
-  }
-}
-
-// Màn hình Tìm kiếm
-class SearchScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Tìm kiếm',
-        style: TextStyle(fontSize: 24),
-      ),
-    );
-  }
-}
-
-
-
