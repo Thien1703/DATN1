@@ -40,19 +40,24 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.green,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(
-              Icons.health_and_safety,
-              color: Colors.white,
-              size: 100.0,
+            // Icon(
+            //   Icons.health_and_safety,
+            //   color: Colors.white,
+            //   size: 100.0,
+            // ),
+            Image.asset(
+              'assets/images/logo_128.png',
+              width: 128,
+              height: 128,
             ),
-            SizedBox(height: 20.0),
-            Text(
+            const SizedBox(height: 20.0),
+            const Text(
               'Your Health Is Our Priority',
               style: TextStyle(
                 fontSize: 24.0,
