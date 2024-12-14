@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_care/src/widget/custom_infoProfile.dart';
+import 'package:health_care/src/model/patient.dart';
 
 class BtnExamination extends StatefulWidget {
   const BtnExamination({super.key});
@@ -10,6 +11,33 @@ class BtnExamination extends StatefulWidget {
 }
 
 class _BtnExamination extends State<BtnExamination> {
+  final List<InfoPatient> inFo_Patient = [
+    InfoPatient(
+        nameHospital: 'PK HAPPY CARE',
+        nameDoctor: 'CKII.Nguyễn Tuấn Phong',
+        calender: '11:50 - 10/02/2023',
+        medicine: '5 ngày thuốc',
+        date: '15/02/2023',
+        examination: 'Tái khám 15/02/2023',
+        status: '1'),
+    InfoPatient(
+      nameHospital: 'PK SMILE CARE',
+      nameDoctor: 'BS. ĐỖ NGUYỆT ANH',
+      calender: '11:50 - 10/02/2023',
+      medicine: '0 ngày thuốc',
+      date: '',
+      examination: 'Tái khám 15/02/2023',
+      status: '1',
+    ),
+    InfoPatient(
+        nameHospital: 'PK HAPPY CARE',
+        nameDoctor: 'CKII.Nguyễn Tuấn Phong',
+        calender: '11:50 - 10/02/2023',
+        medicine: '5 ngày thuốc',
+        date: '15/02/2023',
+        examination: 'Tái khám 15/02/2023',
+        status: '2'),
+  ];
   bool isChoose = true;
   void toggelButton(bool value) {
     setState(
@@ -54,56 +82,18 @@ class _BtnExamination extends State<BtnExamination> {
         ],
       ),
       if (isChoose) ...[
-        CustomInforProfile(
-          nameHospital: 'PK HAPPY CARE',
-          nameDoctor: ' CKII.Nguyễn Tuấn Phong',
-          calender: '11:50 - 10/02/2023',
-          medicine: '5 ngày thuốc',
-          date: ' 15/02/2023',
-          examination: 'Tái khám 15/02/2023',
-        ),
-        CustomInforProfile(
-          nameHospital: 'PK SMILE CARE',
-          nameDoctor: 'BS. ĐỖ NGUYỆT ANH',
-          calender: '11:50 - 10/02/2023',
-          medicine: '0 ngày thuốc',
-          date: '',
-          examination: 'Tái khám 15/02/2023',
-        ),
-        CustomInforProfile(
-          nameHospital: 'PK HAPPY CARE',
-          nameDoctor: ' CKII.Nguyễn Tuấn Phong',
-          calender: '11:50 - 10/02/2023',
-          medicine: '5 ngày thuốc',
-          date: ' 15/02/2023',
-          examination: 'Tái khám 15/02/2023',
-        ),
-        CustomInforProfile(
-          nameHospital: 'PK SMILE CARE',
-          nameDoctor: 'BS. ĐỖ NGUYỆT ANH',
-          calender: '11:50 - 10/02/2023',
-          medicine: '0 ngày thuốc',
-          date: '',
-          examination: 'Tái khám 15/02/2023',
-        ),
-        CustomInforProfile(
-          nameHospital: 'PK HAPPY CARE',
-          nameDoctor: ' CKII.Nguyễn Tuấn Phong',
-          calender: '11:50 - 10/02/2023',
-          medicine: '5 ngày thuốc',
-          date: ' 15/02/2023',
-          examination: 'Tái khám 15/02/2023',
-        ),
-        CustomInforProfile(
-          nameHospital: 'PK SMILE CARE',
-          nameDoctor: 'BS. ĐỖ NGUYỆT ANH',
-          calender: '11:50 - 10/02/2023',
-          medicine: '0 ngày thuốc',
-          date: '',
-          examination: 'Tái khám 15/02/2023',
-        ),
-      ] else
-        ...[]
+        ...inFo_Patient
+            .where((inFoPatient) => inFoPatient.status == '1')
+            .map((infoPatient) {
+          return CustomInforProfile(infoPatient: infoPatient);
+        })
+      ] else ...[
+        ...inFo_Patient
+            .where((inFoPatient) => inFoPatient.status == '2')
+            .map((infoPatient) {
+          return CustomInforProfile(infoPatient: infoPatient);
+        })
+      ]
     ]);
   }
 }
