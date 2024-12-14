@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'register_popup_noti.dart';
+
 class RegisterPopup extends StatefulWidget {
   const RegisterPopup({super.key});
 
@@ -17,11 +19,81 @@ class _RegisterPopupState extends State<RegisterPopup> {
   bool _obscureConfirmPassword = true;
   bool _agreeTerms = false;
 
+  String? _phoneEmailError;
+  String? _nameError;
+  String? _passwordError;
+  String? _confirmPasswordError;
+
+  String? _validatePhoneEmail(String value) {
+    if (value.isEmpty) {
+      return 'Vui lòng nhập số điện thoại hoặc email.';
+    }
+    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+    final phoneRegex = RegExp(r'^\d{10,11}$');
+    if (!emailRegex.hasMatch(value) && !phoneRegex.hasMatch(value)) {
+      return 'Định dạng không hợp lệ\nNhập số điện thoại hoặc email.';
+    }
+    return null;
+  }
+
+  String? _validateName(String value) {
+    if (value.isEmpty) {
+      return 'Vui lòng nhập họ tên của bạn.';
+    }
+    if (value.length < 3) {
+      return 'Họ tên phải có ít nhất 3 ký tự.';
+    }
+    return null;
+  }
+
+  String? _validatePassword(String value) {
+    if (value.isEmpty) {
+      return 'Vui lòng nhập mật khẩu.';
+    }
+    if (value.length < 6) {
+      return 'Mật khẩu phải có ít nhất 6 ký tự.';
+    }
+    return null;
+  }
+
+  String? _validateConfirmPassword(String password, String confirmPassword) {
+    if (confirmPassword.isEmpty) {
+      return 'Vui lòng nhập lại mật khẩu.';
+    }
+    if (password != confirmPassword) {
+      return 'Mật khẩu không khớp.';
+    }
+    return null;
+  }
+
+  void onRegisterPress() {
+    setState(() {
+      _phoneEmailError = _validatePhoneEmail(_phoneEmailController.text);
+      _nameError = _validateName(_nameController.text);
+      _passwordError = _validatePassword(_passwordController.text);
+      _confirmPasswordError = _validateConfirmPassword(
+        _passwordController.text,
+        _confirmPasswordController.text,
+      );
+    });
+
+    if (_phoneEmailError == null &&
+        _nameError == null &&
+        _passwordError == null &&
+        _confirmPasswordError == null &&
+        _agreeTerms) {
+      // Chuyển sang màn hình thông báo đăng ký thành công
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => RegisterPopupNoti()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        // padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
@@ -32,7 +104,7 @@ class _RegisterPopupState extends State<RegisterPopup> {
             Container(
               decoration: BoxDecoration(
                 color: Colors.green,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(15),
                   topRight: Radius.circular(15),
                 ),
@@ -70,8 +142,8 @@ class _RegisterPopupState extends State<RegisterPopup> {
                   labelStyle: const TextStyle(color: Colors.grey),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(color: Colors.grey),
                   ),
+                  errorText: _phoneEmailError,
                 ),
               ),
             ),
@@ -87,8 +159,8 @@ class _RegisterPopupState extends State<RegisterPopup> {
                   labelStyle: const TextStyle(color: Colors.grey),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(color: Colors.grey),
                   ),
+                  errorText: _nameError,
                 ),
               ),
             ),
@@ -118,8 +190,8 @@ class _RegisterPopupState extends State<RegisterPopup> {
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(color: Colors.grey),
                   ),
+                  errorText: _passwordError,
                 ),
               ),
             ),
@@ -149,8 +221,8 @@ class _RegisterPopupState extends State<RegisterPopup> {
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(color: Colors.grey),
                   ),
+                  errorText: _confirmPasswordError,
                 ),
               ),
             ),
@@ -161,7 +233,7 @@ class _RegisterPopupState extends State<RegisterPopup> {
                   value: _agreeTerms,
                   onChanged: (bool? value) {
                     setState(() {
-                      _agreeTerms = value!;
+                      _agreeTerms = value ?? false;
                     });
                   },
                 ),
@@ -178,7 +250,6 @@ class _RegisterPopupState extends State<RegisterPopup> {
                           style: TextStyle(
                             fontSize: 10,
                             color: Color(0xFF4CAF50),
-                            // decoration: TextDecoration.underline,
                           ),
                         ),
                         TextSpan(
@@ -190,7 +261,6 @@ class _RegisterPopupState extends State<RegisterPopup> {
                           style: TextStyle(
                             fontSize: 10,
                             color: Color(0xFF4CAF50),
-                            // decoration: TextDecoration.underline,
                           ),
                         ),
                       ],
@@ -210,17 +280,13 @@ class _RegisterPopupState extends State<RegisterPopup> {
               padding: const EdgeInsets.all(8),
               child: Center(
                 child: OutlinedButton(
-                  onPressed: _agreeTerms
-                      ? () {
-                          // Handle register action
-                        }
-                      : null,
+                  onPressed: _agreeTerms ? onRegisterPress : null,
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: Colors.white),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    minimumSize: Size(118, 36),
+                    minimumSize: const Size(118, 36),
                   ),
                   child: const Text(
                     'ĐĂNG KÝ',
