@@ -11,6 +11,8 @@ class CalendardkScreen extends StatelessWidget {
 }
 
 class MedicalAppointmentScreen extends StatelessWidget {
+  const MedicalAppointmentScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
