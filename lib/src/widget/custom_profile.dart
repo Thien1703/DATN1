@@ -16,7 +16,9 @@ class CustomProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: bodyContent,
+      body: SingleChildScrollView( // Makes body scrollable
+        child: bodyContent,
+      ),
     );
   }
 
@@ -41,7 +43,7 @@ class CustomProfile extends StatelessWidget {
     );
   }
 
-  // Phần nền trắng dưới avatar
+  // White background under the avatar
   Widget _buildWhiteBackground() {
     return Align(
       alignment: Alignment.bottomCenter,
@@ -55,11 +57,16 @@ class CustomProfile extends StatelessWidget {
     );
   }
 
-  // Avatar trên ảnh nền
+  // Avatar on the background image
   Widget _buildAvatar() {
     return Positioned(
       top: 150,
-      left: 155,
+      // ignore: deprecated_member_use
+      left: MediaQueryData.fromView(WidgetsBinding.instance.window)
+              .size
+              .width /
+          2 -
+          45, // Centers the avatar
       child: CircleAvatar(
         radius: 45,
         backgroundImage: AssetImage(avatarPath),
@@ -67,7 +74,7 @@ class CustomProfile extends StatelessWidget {
     );
   }
 
-  // Tên và dòng "xin chào"
+  // Greeting text and name
   Widget _buildNameAndGreeting() {
     return Positioned(
       bottom: -5,

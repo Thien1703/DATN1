@@ -64,7 +64,17 @@ class MedicalScreen extends StatelessWidget {
               }
             },
           ],
+        ),Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Text(
+        'Lịch khám của bạn',
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.green,
         ),
+      ),
+    ),
         AppointmentCard(
           title: 'PK HAPPY CARE',
           address: '30 Lâm Văn Bền, P Tân Kiểng, Q7',
@@ -74,10 +84,5 @@ class MedicalScreen extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  // Hàm xử lý sự kiện khi nhấn vào tính năng
-  void _onFeatureTap(String title) {
-    print('$title tapped');
   }
 }
