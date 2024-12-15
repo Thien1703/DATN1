@@ -3,8 +3,8 @@ import 'package:health_care/src/widget/appointment_card.dart';
 import 'package:health_care/src/widget/custom_profile.dart';
 import 'package:health_care/src/widget/feature_container.dart';
 
-class MedicalScreen extends StatelessWidget {
-  const MedicalScreen({super.key});
+class AccountScreen extends StatelessWidget {
+  const AccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/src/screens/home/medical_screen.dart';
+import 'package:health_care/src/screens/home/account_screen.dart';
 
 class HomeScreens extends StatefulWidget {
+  const HomeScreens({super.key});
+
   @override
   _HomeScreensState createState() => _HomeScreensState();
 }
@@ -70,13 +72,15 @@ class _HomeScreensState extends State<HomeScreens> {
   }
 }
 
-// Màn hình Tài khoản
-class AccountScreen extends StatelessWidget {
+
+class MedicalScreen extends StatelessWidget {
+  const MedicalScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        'Tài khoản',
+        'Thăm khám',
         style: TextStyle(fontSize: 24),
       ),
     );
