@@ -4,6 +4,8 @@ import 'package:health_care/src/screens/home/account_screen.dart';
 import 'package:health_care/src/screens/home/search_screen.dart';
 
 class HomeScreens extends StatefulWidget {
+  const HomeScreens({super.key});
+
   @override
   _HomeScreensState createState() => _HomeScreensState();
 }

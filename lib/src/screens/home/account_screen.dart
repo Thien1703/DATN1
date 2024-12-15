@@ -1,62 +1,88 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/src/screens/booking/examination_screen.dart';
+import 'package:health_care/src/widget/appointment_card.dart';
 import 'package:health_care/src/widget/custom_profile.dart';
-import 'package:health_care/src/widget/feature_card.dart';
+import 'package:health_care/src/widget/feature_container.dart';
 
 class AccountScreen extends StatelessWidget {
-  AccountScreen({super.key});
-
-  final List<Map<String, dynamic>> features = [
-    {'icon': Icons.schedule, 'title': 'Lịch khám', 'onTap': 'Lịch khám'},
-    {
-      'icon': Icons.medical_services,
-      'title': 'Thăm khám',
-      'onTap': 'Thăm khám'
-    },
-    {
-      'icon': Icons.local_hospital,
-      'title': 'Cơ sở khám',
-      'onTap': 'Cơ sở khám'
-    },
-    {'icon': Icons.attach_money, 'title': 'Doanh thu', 'onTap': 'Doanh thu'},
-    {'icon': Icons.settings, 'title': 'Cấu hình', 'onTap': 'Cấu hình'},
-    {'icon': Icons.person, 'title': 'Tài khoản', 'onTap': 'Tài khoản'},
-  ];
+  const AccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomProfile(
       name: 'Nguyễn Hữu Thiện', // Tên bác sĩ
       avatarPath: 'assets/images/ic_profile.png', // Đường dẫn avatar
-      bodyContent: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 16,
-            crossAxisSpacing: 16,
-          ),
-          itemCount: features.length, // Sử dụng list dynamic
-          itemBuilder: (context, index) {
-            var feature = features[index];
-            return FeatureCard(
-              icon: feature['icon'],
-              title: feature['title'],
-              onTap: () {
-                print(feature['onTap']); // Tạo sự kiện khi nhấn vào từng item
-                if (feature['onTap'] == 'Thăm khám') {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Examination(),
-                    ),
-                  );
-                }
-              },
-            );
-          },
+      bodyContent: _buildBodyContent(),
+    );
+  }
+
+  // Tạo phần body với GridView
+  Widget _buildBodyContent() {
+    return Column(
+      children: [
+        FeatureContainer(
+          features: [
+            {
+              'icon': Icons.schedule,
+              'title': 'Lịch khám',
+              'onTap': () {
+                print('Lịch khám được nhấn');
+              }
+            },
+            {
+              'icon': Icons.medical_services,
+              'title': 'Thăm khám',
+              'onTap': () {
+                print('Thăm khám được nhấn');
+              }
+            },
+            {
+              'icon': Icons.local_hospital,
+              'title': 'Cơ sở khám',
+              'onTap': () {
+                print('Cơ sở khám được nhấn');
+              }
+            },
+            {
+              'icon': Icons.attach_money,
+              'title': 'Doanh thu',
+              'onTap': () {
+                print('Doanh thu được nhấn');
+              }
+            },
+            {
+              'icon': Icons.settings,
+              'title': 'Cấu hình',
+              'onTap': () {
+                print('Cấu hình được nhấn');
+              }
+            },
+            {
+              'icon': Icons.person,
+              'title': 'Tài khoản',
+              'onTap': () {
+                print('Tài khoản được nhấn');
+              }
+            },
+          ],
+        ),Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Text(
+        'Lịch khám của bạn',
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.green,
         ),
       ),
+    ),
+        AppointmentCard(
+          title: 'PK HAPPY CARE',
+          address: '30 Lâm Văn Bền, P Tân Kiểng, Q7',
+          doctorName: 'Nguyễn Tuấn Phong',
+          dateTime: '11:50 - 10/02/2023',
+          code: '4F450TY',
+        ),
+      ],
     );
   }
 }

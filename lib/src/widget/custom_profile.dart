@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Tạo widget cho phần Header (CustomProfile)
 class CustomProfile extends StatelessWidget {
   final String name;
   final String avatarPath;
@@ -10,80 +9,100 @@ class CustomProfile extends StatelessWidget {
     super.key,
     required this.name,
     required this.avatarPath,
-    required this.bodyContent, // Phần nội dung sẽ truyền vào
+    required this.bodyContent,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize:
-            Size(double.infinity, 250), // Đặt chiều cao của appBar là 250
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                  'assets/images/imageprofile.png'), // Đường dẫn đến hình ảnh
-              fit: BoxFit.cover, // Đảm bảo hình ảnh phủ toàn bộ phần header
-            ),
-          ),
-          child: Stack(
-            children: [
-              // Nền trắng phía dưới
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: double.infinity,
-                  height: 100, // Chiều cao của phần nền trắng
-                  decoration: BoxDecoration(
-                    color: Colors.white, // Nền trắng
-                  ),
-                ),
-              ),
-              // Avatar nằm trên ảnh nền
-              Positioned(
-                top: 150, // Vị trí avatar trên màn hình
-                left: 155,
-                child: CircleAvatar(
-                  radius: 45, // Kích thước avatar
-                  backgroundImage:
-                      AssetImage(avatarPath), // Đường dẫn đến ảnh avatar
-                ),
-              ),
-              // Tên và dòng "xin chào" căn giữa
-              Positioned(
-                bottom: -5, // Vị trí tên và xin chào
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Xin chào',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20, // Cỡ chữ cho "Xin chào"
-                          fontWeight: FontWeight.bold, // Độ đậm nhẹ hơn
-                        ),
-                      ),
-                      Text(
-                        name, // Tên bác sĩ
-                        style: TextStyle(
-                          color: Colors.black, // Màu chữ
-                          fontSize: 20, // Cỡ chữ cho tên
-                          fontWeight: FontWeight.bold, // Độ đậm của chữ
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+      appBar: _buildAppBar(),
+      body: SingleChildScrollView( // Makes body scrollable
+        child: bodyContent,
+      ),
+    );
+  }
+
+  PreferredSizeWidget _buildAppBar() {
+    return PreferredSize(
+      preferredSize: Size(double.infinity, 250),
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/imageprofile.png'),
+            fit: BoxFit.cover,
           ),
         ),
+        child: Stack(
+          children: [
+            _buildWhiteBackground(),
+            _buildAvatar(),
+            _buildNameAndGreeting(),
+          ],
+        ),
       ),
-      body: bodyContent, // Phần bodyContent sẽ được truyền vào
+    );
+  }
+
+  // White background under the avatar
+  Widget _buildWhiteBackground() {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        width: double.infinity,
+        height: 100,
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  // Avatar on the background image
+  Widget _buildAvatar() {
+    return Positioned(
+      top: 150,
+      // ignore: deprecated_member_use
+      left: MediaQueryData.fromView(WidgetsBinding.instance.window)
+              .size
+              .width /
+          2 -
+          45, // Centers the avatar
+      child: CircleAvatar(
+        radius: 45,
+        backgroundImage: AssetImage(avatarPath),
+      ),
+    );
+  }
+
+  // Greeting text and name
+  Widget _buildNameAndGreeting() {
+    return Positioned(
+      bottom: -5,
+      left: 0,
+      right: 0,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Xin chào',
+              style: _buildTextStyle(),
+            ),
+            Text(
+              name,
+              style: _buildTextStyle(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  TextStyle _buildTextStyle() {
+    return TextStyle(
+      color: Colors.black,
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
     );
   }
 }
