@@ -14,7 +14,7 @@ class _BtnExamination extends State<BtnExamination> {
   final List<InfoPatient> inFo_Patient = [
     InfoPatient(
         nameHospital: 'PK HAPPY CARE',
-        nameDoctor: 'CKII.Nguyễn Tuấn Phong',
+        nameDoctor: 'CKII.NGUYỄN TUẤN PHONG',
         calender: '11:50 - 10/02/2023',
         medicine: '5 ngày thuốc',
         date: '15/02/2023',
