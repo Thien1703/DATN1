@@ -7,6 +7,7 @@ class AppointmentCard extends StatelessWidget {
   final String doctorName; // Tên bác sĩ
   final String dateTime; // Ngày và giờ khám
   final String code; // Mã số khám
+  final bool appointment;
 
   const AppointmentCard({
     super.key,
@@ -15,6 +16,7 @@ class AppointmentCard extends StatelessWidget {
     required this.doctorName,
     required this.dateTime,
     required this.code,
+    required this.appointment,
   });
 
   @override
@@ -69,6 +71,30 @@ class AppointmentCard extends StatelessWidget {
           const SizedBox(height: 6.0),
           // Mã số khám
           _buildInfoRow(Icons.qr_code, code, isBold: true, isRed: true),
+          if (appointment)
+            Align(
+              alignment: Alignment.bottomRight,
+              child: GestureDetector(
+                onTap: () {
+                  print('Đặt lịch');
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xFF208E00), width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: Text(
+                    'Đặt lịch',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF3D9A00),
+                    ),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );
