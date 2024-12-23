@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:health_care/src/screens/Auth/register_popup.dart';
 import 'package:health_care/src/screens/home/home_screens.dart';
@@ -11,12 +12,13 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _showPass = false;
-  TextEditingController _userController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
+  final TextEditingController _userController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
   final _userERR = 'Tài khoản không hợp lệ';
   final _passERR = 'Mật khẩu phải trên 6 kí tự';
   bool _userInvalid = false;
   bool _passInvalid = false;
+  String? _firebaseError;
 
   bool validateUserName(String userName) {
     bool isPhoneNumber = RegExp(r'^\d+$').hasMatch(userName);
@@ -25,17 +27,49 @@ class _LoginState extends State<Login> {
     return isValid;
   }
 
-  void onLoginClick() {
+  // void onLoginClick() {
+  //   setState(
+  //     () {
+  //       _userInvalid = !validateUserName(_userController.text);
+  //       _passInvalid = _passController.text.length < 6;
+  //       if (!_userInvalid && !_passInvalid) {
+  //         Navigator.push(
+  //           context,
+  //           MaterialPageRoute(builder: (context) => HomeScreens()),
+  //         );
+  //       }
+  //     },
+  //   );
+  // }
+
+   Future<void> onLoginClick() async {
     setState(() {
       _userInvalid = !validateUserName(_userController.text);
       _passInvalid = _passController.text.length < 6;
-      if (!_userInvalid && !_passInvalid) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreens()),
-        );
-      }
+      _firebaseError = null; // Clear previous Firebase error
     });
+
+    if (!_userInvalid && !_passInvalid) {
+      try {
+        final email = _userController.text.trim();
+        final password = _passController.text.trim();
+
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+
+        // Navigate to Home Screen on success
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreens()),
+        );
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          _firebaseError = e.message;
+        });
+      }
+    }
   }
 
   @override
@@ -117,6 +151,14 @@ class _LoginState extends State<Login> {
                   ],
                 ),
               ),
+              if (_firebaseError != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    _firebaseError!,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                 child: SizedBox(
@@ -138,7 +180,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -160,7 +202,7 @@ class _LoginState extends State<Login> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-                child: Container(
+                child: SizedBox(
                   height: 100,
                   width: double.infinity,
                   child: Row(

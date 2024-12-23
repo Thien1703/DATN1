@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:health_care/src/screens/Auth/login_screens.dart';
+import 'package:health_care/src/screens/Auth/login_screen.dart';
 import 'package:health_care/src/screens/home/home_screens.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

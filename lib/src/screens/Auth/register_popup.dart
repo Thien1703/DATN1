@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'register_popup_noti.dart';
@@ -23,6 +24,7 @@ class _RegisterPopupState extends State<RegisterPopup> {
   String? _nameError;
   String? _passwordError;
   String? _confirmPasswordError;
+  String? _firebaseError;
 
   String? _validatePhoneEmail(String value) {
     if (value.isEmpty) {
@@ -66,6 +68,29 @@ class _RegisterPopupState extends State<RegisterPopup> {
     return null;
   }
 
+  Future<void> createUser() async {
+    final email = _phoneEmailController.text.trim();
+    final password = _passwordController.text.trim();
+
+    try {
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Success: Navigate to the notification screen
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const RegisterPopupNoti()),
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        _firebaseError = e.message;
+      });
+    }
+  }
+
   void onRegisterPress() {
     setState(() {
       _phoneEmailError = _validatePhoneEmail(_phoneEmailController.text);
@@ -75,6 +100,7 @@ class _RegisterPopupState extends State<RegisterPopup> {
         _passwordController.text,
         _confirmPasswordController.text,
       );
+      _firebaseError = null; // Clear previous Firebase error
     });
 
     if (_phoneEmailError == null &&
@@ -82,6 +108,7 @@ class _RegisterPopupState extends State<RegisterPopup> {
         _passwordError == null &&
         _confirmPasswordError == null &&
         _agreeTerms) {
+      createUser();
       // Chuyển sang màn hình thông báo đăng ký thành công
       Navigator.push(
         context,
@@ -269,6 +296,15 @@ class _RegisterPopupState extends State<RegisterPopup> {
                 ),
               ],
             ),
+            const SizedBox(height: 10),
+            if (_firebaseError != null)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  _firebaseError!,
+                  style: const TextStyle(color: Colors.red),
+                ),
+              ),
             Container(
               decoration: BoxDecoration(
                 color: Colors.green,
