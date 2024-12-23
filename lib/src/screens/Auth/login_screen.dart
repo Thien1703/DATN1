@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:health_care/src/screens/Auth/register_popup.dart';
-import 'package:health_care/src/screens/home/home_screens.dart';
+import 'package:health_care/src/screens/home/home_screen.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -62,7 +62,7 @@ class _LoginState extends State<Login> {
         // Navigate to Home Screen on success
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const HomeScreens()),
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
       } on FirebaseAuthException catch (e) {
         setState(() {
