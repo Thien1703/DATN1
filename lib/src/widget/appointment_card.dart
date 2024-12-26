@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_care/src/widget/booking_diaLog.dart';
 
 // Widget Lịch Khám
 class AppointmentCard extends StatelessWidget {
@@ -76,8 +77,8 @@ class AppointmentCard extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: GestureDetector(
                 onTap: () {
-                  print('Đặt lịch');
-                },
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>BookingDiaLog()));
+                },  
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
