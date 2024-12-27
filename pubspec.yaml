@@ -17,9 +17,16 @@ dependencies:
   carousel_slider: ^5.0.0
   smooth_page_indicator: ^1.1.0
   firebase_core: ^3.2.0
+  google_maps_flutter: ^2.10.0
+  http:
+  intl:
+  qr_flutter: ^4.1.0
+
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
   flutter_lints: ^5.0.0

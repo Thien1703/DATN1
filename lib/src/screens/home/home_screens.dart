@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_care/src/screens/home/medical_screen.dart';
 import 'package:health_care/src/screens/home/account_screen.dart';
-import 'package:health_care/src/screens/home/search_screen.dart';
+import 'package:health_care/src/screens/home/map_explore/search_screen.dart';
 
 class HomeScreens extends StatefulWidget {
   const HomeScreens({super.key});
