@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:health_care/src/screens/Auth/auth_service.dart';
 import 'package:health_care/src/screens/Auth/register_popup.dart';
 import 'package:health_care/src/screens/home/home_screen.dart';
 
@@ -42,7 +42,7 @@ class _LoginState extends State<Login> {
   //   );
   // }
 
-   Future<void> onLoginClick() async {
+  Future<void> onLoginClick() async {
     setState(() {
       _userInvalid = !validateUserName(_userController.text);
       _passInvalid = _passController.text.length < 6;
@@ -51,22 +51,18 @@ class _LoginState extends State<Login> {
 
     if (!_userInvalid && !_passInvalid) {
       try {
-        final email = _userController.text.trim();
-        final password = _passController.text.trim();
-
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email,
-          password: password,
+        await AuthService().loginWithEmailAndPassword(
+          _userController.text.trim(),
+          _passController.text.trim(),
         );
-
         // Navigate to Home Screen on success
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
-      } on FirebaseAuthException catch (e) {
+      } catch (e) {
         setState(() {
-          _firebaseError = e.message;
+          _firebaseError = e.toString();
         });
       }
     }
@@ -83,7 +79,7 @@ class _LoginState extends State<Login> {
           color: Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -160,7 +156,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                 child: SizedBox(
                   width: double.infinity,
                   height: 50,
@@ -201,9 +197,9 @@ class _LoginState extends State<Login> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 child: SizedBox(
-                  height: 100,
+                  height: 50,
                   width: double.infinity,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -229,7 +225,71 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 ),
-              )
+              ),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Text(
+                  'hoặc',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () async {
+                        try {
+                          final user = await AuthService().loginWithGoogle();
+                          if (user != null) {
+                            // Navigate to Home Screen on success
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomeScreen()),
+                            );
+                          }
+                        } catch (e) {
+                          setState(() {
+                            _firebaseError = e.toString();
+                          });
+                        }
+                      },
+                      child: Image.asset(
+                        'assets/images/google.png',
+                        height: 40,
+                        width: 40,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: () async {
+                        try {
+                          final user = await AuthService().loginWithFacebook();
+                          if (user != null) {
+                            print(
+                                'Đăng nhập thành công: ${user.displayName} (${user.email})');
+                            // Thực hiện các hành động sau khi đăng nhập thành công (chuyển màn hình, lưu thông tin, v.v.)
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomeScreen()),
+                            );
+                          }
+                        } catch (e) {
+                          print('Đăng nhập Facebook thất bại: $e');
+                          // Hiển thị thông báo lỗi hoặc xử lý logic khi thất bại
+                        }
+                      },
+                      child: Image.asset(
+                        'assets/images/facebook.png',
+                        height: 40,
+                        width: 40,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ));

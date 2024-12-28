@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:health_care/src/screens/Auth/auth_service.dart';
+import 'package:health_care/src/screens/welcome_screens.dart';
 import 'package:health_care/src/widget/appointment_card.dart';
 import 'package:health_care/src/widget/custom_profile.dart';
 import 'package:health_care/src/widget/feature_container.dart';
@@ -56,8 +58,29 @@ class AccountScreen extends StatelessWidget {
             {
               'icon': Icons.settings,
               'title': 'Tài khoản',
-              'onTap': () {
-                print('Tài khoản được nhấn');
+              'onTap': () async {
+                try {
+                  // Đăng xuất tài khoản
+                  await AuthService().signOut();
+
+                  // Điều hướng đến màn hình chào mừng và xóa lịch sử điều hướng trước đó
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => Wellcomescreens()),
+                    (Route<dynamic> route) => false,
+                  );
+
+                  // Hiển thị thông báo đăng xuất thành công
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Đăng xuất thành công!')),
+                  );
+                } catch (e) {
+                  // Hiển thị thông báo khi đăng xuất thất bại
+                  print('Đăng xuất thất bại: $e');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Đăng xuất thất bại: $e')),
+                  );
+                }
               }
             },
             {

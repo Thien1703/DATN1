@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:health_care/src/screens/Auth/auth_service.dart';
 
 import 'register_popup_noti.dart';
 
@@ -14,8 +14,7 @@ class _RegisterPopupState extends State<RegisterPopup> {
   final TextEditingController _phoneEmailController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
   bool _agreeTerms = false;
@@ -68,25 +67,20 @@ class _RegisterPopupState extends State<RegisterPopup> {
     return null;
   }
 
+
   Future<void> createUser() async {
-    final email = _phoneEmailController.text.trim();
-    final password = _passwordController.text.trim();
-
     try {
-      final UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+      await AuthService().registerWithEmailAndPassword(
+        _phoneEmailController.text.trim(),
+        _passwordController.text.trim(),
       );
-
-      // Success: Navigate to the notification screen
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const RegisterPopupNoti()),
       );
-    } on FirebaseAuthException catch (e) {
+    } catch (e) {
       setState(() {
-        _firebaseError = e.message;
+        _firebaseError = e.toString();
       });
     }
   }
