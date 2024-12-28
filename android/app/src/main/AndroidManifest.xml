@@ -35,7 +35,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-<<<<<<< HEAD
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -60,10 +59,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-=======
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDrrVUAagIJuvv5ijvxjt7zw3R8xzGsAr8" />
->>>>>>> master
     </application>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

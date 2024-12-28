@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/Material.dart';
 import 'package:health_care/src/model/data_search_model.dart';
 import 'package:http/http.dart' as http;
