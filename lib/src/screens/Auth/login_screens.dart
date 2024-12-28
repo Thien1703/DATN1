@@ -11,8 +11,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _showPass = false;
-  TextEditingController _userController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
+  final TextEditingController _userController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
   final _userERR = 'Tài khoản không hợp lệ';
   final _passERR = 'Mật khẩu phải trên 6 kí tự';
   bool _userInvalid = false;
@@ -136,7 +136,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -158,7 +158,7 @@ class _LoginState extends State<Login> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-                child: Container(
+                child: SizedBox(
                   height: 100,
                   width: double.infinity,
                   child: Row(

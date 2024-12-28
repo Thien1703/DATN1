@@ -643,7 +643,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       children: [
                         Icon(Icons.calendar_month),
                         Text(
-                            '${DateFormat('dd/MM/yyyy').format(DateTime.now())}',
+                            DateFormat('dd/MM/yyyy').format(DateTime.now()),
                             style: TextStyle(
                                 color: Colors.green,
                                 fontSize: 20,

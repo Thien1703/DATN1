@@ -31,7 +31,7 @@ class _SearchAddressPageState extends State<SearchAddressPage> {
     isWaitting = true;
     try {
       var url = Uri.parse(
-          "https://rsapi.goong.io/Place/AutoComplete?api_key=${apiKey}&input=${input}");
+          "https://rsapi.goong.io/Place/AutoComplete?api_key=$apiKey&input=$input");
       final response = await http.get(
         url,
       );
@@ -58,7 +58,7 @@ class _SearchAddressPageState extends State<SearchAddressPage> {
   Future<void> getLatLong(BuildContext context, DataSearchModel data) async {
     try {
       var url = Uri.parse(
-          "https://rsapi.goong.io/Place/Detail?place_id=${data.placeId}&api_key=${apiKey}");
+          "https://rsapi.goong.io/Place/Detail?place_id=${data.placeId}&api_key=$apiKey");
       final response = await http.get(
         url,
       );
@@ -72,7 +72,6 @@ class _SearchAddressPageState extends State<SearchAddressPage> {
         result.lng = lng;
         Navigator.pop(context, result);
       } else {}
-    } catch (e) {
     } finally {}
   }
 
