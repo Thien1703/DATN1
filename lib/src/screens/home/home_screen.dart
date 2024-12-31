@@ -3,14 +3,14 @@ import 'package:health_care/src/screens/home/medical_screen.dart';
 import 'package:health_care/src/screens/home/account_screen.dart';
 import 'package:health_care/src/screens/home/map_explore/search_screen.dart';
 
-class HomeScreens extends StatefulWidget {
-  const HomeScreens({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  _HomeScreensState createState() => _HomeScreensState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreensState extends State<HomeScreens> {
+class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   // Chuyển đổi màn hình dựa trên chỉ mục đã chọn

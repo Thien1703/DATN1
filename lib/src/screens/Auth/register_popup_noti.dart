@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/src/screens/Auth/login_screens.dart';
+import 'package:health_care/src/screens/Auth/login_screen.dart';
 
 class RegisterPopupNoti extends StatefulWidget {
   const RegisterPopupNoti({super.key});

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="app_name">Health Care</string>
+    <string name="facebook_app_id">585496690863861</string>
+    <string name="fb_login_protocol_scheme">fb585496690863861</string>
+    <string name="facebook_client_token">94853dec7cc2b521c04ef58ffb2cf325</string>
+</resources>
