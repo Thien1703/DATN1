@@ -42,11 +42,9 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Container(
+        body: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(
               30, 0, 30, MediaQuery.of(context).viewInsets.bottom),
-          constraints: const BoxConstraints.expand(),
-          color: Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,

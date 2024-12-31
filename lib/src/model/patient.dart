@@ -7,13 +7,13 @@ class InfoPatient {
   final String examination;
   final String status;
 
-  InfoPatient({
-    required this.nameHospital,
-    required this.nameDoctor,
-    required this.calender,
-    required this.medicine,
-    required this.date,
-    required this.examination,
-    required this.status,
-  });
+    InfoPatient({
+      required this.nameHospital,
+      required this.nameDoctor,
+      required this.calender,
+      required this.medicine,
+      required this.date,
+      required this.examination,
+      required this.status,
+    });
 }
