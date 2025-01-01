@@ -20,7 +20,7 @@ class CustomQrdetail extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.all(10),
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: EdgeInsets.symmetric(horizontal: 15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Colors.white,
@@ -60,20 +60,30 @@ class CustomQrdetail extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Container(
-                width: double.infinity,
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 163, 241, 149),
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: Text(
-                  'Đã đặt lịch',
-                  style: TextStyle(
-                      color: const Color.fromARGB(255, 1, 105, 3),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12),
-                ),
-              ),
+                  width: double.infinity,
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 163, 241, 149),
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/ic_tick.png',
+                        width: 15,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Đã đặt lịch',
+                        style: TextStyle(
+                            color: const Color.fromARGB(255, 1, 105, 3),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14),
+                      ),
+                    ],
+                  )),
               SizedBox(height: 5),
             ],
           ),
@@ -81,7 +91,7 @@ class CustomQrdetail extends StatelessWidget {
         customDashedLine(),
         Container(
           padding: EdgeInsets.all(15),
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: EdgeInsets.symmetric(horizontal: 15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Colors.white,
@@ -115,7 +125,7 @@ class CustomQrdetail extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.all(10),
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: EdgeInsets.symmetric(horizontal: 15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Colors.white,
@@ -138,7 +148,7 @@ class CustomQrdetail extends StatelessWidget {
           alignment: Alignment.topCenter,
           width: double.infinity,
           padding: EdgeInsets.all(10),
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: EdgeInsets.symmetric(horizontal: 15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Colors.white,
@@ -166,7 +176,7 @@ class CustomQrdetail extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.all(10),
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: EdgeInsets.symmetric(horizontal: 15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Colors.white,

@@ -17,7 +17,7 @@ class CustomCardform extends StatelessWidget {
                     )));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -27,18 +27,26 @@ class CustomCardform extends StatelessWidget {
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Container(
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 163, 241, 149),
-                    borderRadius: BorderRadius.all(Radius.circular(7))),
-                child: Text(
-                  'Đã đặt lịch',
-                  style: TextStyle(
-                      color: const Color.fromARGB(255, 1, 105, 3),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12),
-                ),
-              ),
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 163, 241, 149),
+                      borderRadius: BorderRadius.all(Radius.circular(7))),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/ic_dot.png',
+                        width: 10,
+                      ),
+                      SizedBox(width: 5),
+                      Text(
+                        'Đã đặt lịch',
+                        style: TextStyle(
+                            color: const Color.fromARGB(255, 1, 105, 3),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12),
+                      ),
+                    ],
+                  )),
               Row(
                 children: [
                   Text('STT '),

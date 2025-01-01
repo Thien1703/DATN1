@@ -21,7 +21,11 @@ class QrdetailScreen extends StatelessWidget {
               ),
             ],
           )),
-          Container(
+          InkWell(
+            onTap: () {
+              print('object');
+            },
+            child: Container(
               alignment: Alignment.center,
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -29,16 +33,15 @@ class QrdetailScreen extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   border: Border.all(color: Colors.red, width: 1)),
-              child: InkWell(
-                onTap: () {},
-                child: Text(
-                  'Hủy lịch',
-                  style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.red),
-                ),
-              )),
+              child: Text(
+                'Hủy lịch',
+                style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.red),
+              ),
+            ),
+          )
         ],
       ),
     );
