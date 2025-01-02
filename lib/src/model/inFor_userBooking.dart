@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class InfoBooking {
   final String nameHospital;
   final String image;
@@ -6,6 +8,7 @@ class InfoBooking {
   final String gioDangKy;
   final String benhNhan;
   final String phone;
+  final int status;
 
   InfoBooking({
     required this.nameHospital,
@@ -15,5 +18,6 @@ class InfoBooking {
     required this.gioDangKy,
     required this.benhNhan,
     required this.phone,
+    required this.status,
   });
 }
